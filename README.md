@@ -107,6 +107,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Export functionality for doctor visits
 - [ ] Mobile app version
 
+## 🙏 Acknowledgements
+- Made with preciation and care by Balaji Rama and Majdi Alameddine
+
 ---
 
 *"Everybody lies." - The key to thorough symptom assessment is asking the right questions.*
