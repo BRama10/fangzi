@@ -138,8 +138,7 @@ const SymptomChecker = () => {
   const handleUserInput = async (input: string) => {
     if (!input.trim()) return;
 
-    //@ts-ignore
-    let loadingId = Date.now().toString();
+    const loadingId = Date.now().toString();
 
     try {
       setIsTyping(true);
@@ -188,11 +187,11 @@ const SymptomChecker = () => {
   };
 
   //@ts-ignore
-  const isValidResponse = (response: any): response is APIResponse => {
-    return response &&
-      (response.response_type === 'question' || response.response_type === 'assessment') &&
-      (response.response_type === 'question' ? !!response.question : !!response.assessment);
-  };
+  // const isValidResponse = (response: any): response is APIResponse => {
+  //   return response &&
+  //     (response.response_type === 'question' || response.response_type === 'assessment') &&
+  //     (response.response_type === 'question' ? !!response.question : !!response.assessment);
+  // };
 
 
   // Convert API response to UI message format
