@@ -138,7 +138,7 @@ const SymptomChecker = () => {
   const handleUserInput = async (input: string) => {
     if (!input.trim()) return;
 
-    //@ts-expect-error
+    //@ts-ignore
     let loadingId = Date.now().toString();
 
     try {
@@ -187,7 +187,7 @@ const SymptomChecker = () => {
     }
   };
 
-  @ts-expect-error
+  //@ts-ignore
   const isValidResponse = (response: any): response is APIResponse => {
     return response &&
       (response.response_type === 'question' || response.response_type === 'assessment') &&
