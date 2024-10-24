@@ -1,5 +1,7 @@
 # 房子 (Fangzi) - AI Symptom Assessment Assistant
 
+<a href='https://fangzii.vercel.app'><img src='https://img.shields.io/badge/Live Demo-Fangzi-green'></a>
+
 ![Fangzi UI Screenshot](https://github.com/BRama10/fangzi/blob/main/assets/picture.png)
 
 Fangzi (房子, meaning "house" in Chinese - a reference to the brilliant fictional Dr. House, MD) is a sophisticated AI-powered symptom assessment tool that combines modern artificial intelligence with methodical medical inquiry. Through a conversational interface, it helps users understand their symptoms while maintaining a careful, analytical approach to health assessment.
