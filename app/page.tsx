@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
-  AlertCircle, Clock, Pill, Stethoscope, SendHorizontal,
-  ThermometerSun, Activity, HeartPulse, Bot
+  AlertCircle, Clock, Pill, Stethoscope, SendHorizontal, Bot
 } from "lucide-react";
 import { sendMessage } from '@/lib/api';
 import { PROMPT_TEMPLATE } from '@/lib/const';
@@ -139,6 +138,7 @@ const SymptomChecker = () => {
   const handleUserInput = async (input: string) => {
     if (!input.trim()) return;
 
+    //@ts-ignore
     let loadingId = Date.now().toString();
 
     try {
@@ -187,6 +187,7 @@ const SymptomChecker = () => {
     }
   };
 
+  //@ts-ignore
   const isValidResponse = (response: any): response is APIResponse => {
     return response &&
       (response.response_type === 'question' || response.response_type === 'assessment') &&
@@ -453,7 +454,7 @@ const SymptomChecker = () => {
                 <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center animate-pulse">
                   <Stethoscope className="h-8 w-8 text-blue-600" />
                 </div>
-                <p className="text-center">Share your symptoms and I'll provide a detailed analysis here</p>
+                <p className="text-center">Share your symptoms and I&apos;ll provide a detailed analysis here</p>
               </div>
             ) : (
               <div className="space-y-6 animate-fadeIn">
