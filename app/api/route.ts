@@ -1,8 +1,11 @@
 // app/api/medical-chat/route.ts
 import OpenAI from 'openai';
 import { NextRequest } from 'next/server';
+import { unstable_noStore as noStore } from 'next/cache'
 import { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
 import { PROMPT_TEMPLATE } from '@/lib/const';
+
+noStore()
 
 // Initialize OpenAI client
 const openai = new OpenAI({
