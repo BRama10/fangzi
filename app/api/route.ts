@@ -1,6 +1,8 @@
 // app/api/medical-chat/route.ts
 import OpenAI from 'openai';
 import { NextRequest } from 'next/server';
+import { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
+import { PROMPT_TEMPLATE } from '@/lib/const';
 
 // Initialize OpenAI client
 const openai = new OpenAI({
@@ -10,12 +12,20 @@ const openai = new OpenAI({
 // Type definitions
 interface Message {
   role: 'system' | 'user' | 'assistant';
-  content: string | object;
+  content: string;
 }
 
 interface ConversationRequest {
   messages?: Message[];
   userInput: string;
+}
+
+// Helper function to convert our Message type to OpenAI's ChatCompletionMessageParam
+function convertToOpenAIMessages(messages: Message[]): ChatCompletionMessageParam[] {
+  return messages.map(msg => ({
+    role: msg.role,
+    content: msg.content
+  })) as ChatCompletionMessageParam[];
 }
 
 export async function POST(req: NextRequest) {
@@ -40,12 +50,15 @@ export async function POST(req: NextRequest) {
       content: userInput
     });
 
+    // Convert messages to OpenAI's expected format
+    const openAIMessages = convertToOpenAIMessages(conversationMessages);
+
     // Get response from OpenAI
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4-turbo-preview', // or your preferred model
-      messages: conversationMessages!,
+      model: 'gpt-4o', // or your preferred model
+      messages: openAIMessages,
       temperature: 0.7,
-      response_format: { type: "json_object" }, // Enforce JSON response
+      response_format: { type: "json_object" },
       max_tokens: 500,
     });
 
@@ -55,7 +68,7 @@ export async function POST(req: NextRequest) {
     // Add assistant's response to conversation history
     conversationMessages.push({
       role: 'assistant',
-      content: assistantMessage.content!
+      content: assistantMessage.content || '{}'
     });
 
     // Parse the JSON response
